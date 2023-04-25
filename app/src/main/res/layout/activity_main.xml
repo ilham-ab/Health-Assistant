@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash_screen">
+
+    <ImageButton
+        android:id="@+id/logout"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/log_out"
+        tools:ignore="ExtraText,MissingConstraints"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:background="@android:color/transparent"
+        android:layout_marginEnd="10dp"
+        android:contentDescription="TODO" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+
+        <TextView
+            android:layout_width="385dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/paprika"
+            android:text="Health assistant"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="357dp"
+            android:layout_marginTop="100dp"
+            android:columnCount="2"
+            android:columnOrderPreserved="false"
+            android:gravity="center"
+            android:rowCount="2"
+            >
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_columnWeight="1"
+                android:layout_margin="15dp"
+                app:cardCornerRadius="20dp"
+                android:background="@android:color/transparent"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="35dp"
+                    android:background="@android:color/transparent">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/med"
+                        android:scaleType="centerCrop" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:text="Médicament"
+                        android:textAlignment="center"
+                        />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_columnWeight="1"
+                android:layout_margin="15dp"
+                android:background="@android:color/transparent">
+
+                <LinearLayout
+                    android:id="@+id/personpage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="35dp"
+                    android:background="@android:color/transparent">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/userprofile"
+                        android:scaleType="centerCrop" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Profil"
+                        android:textAlignment="center"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_columnWeight="1"
+                android:layout_margin="15dp"
+                android:background="@android:color/transparent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="35dp"
+                    android:background="@android:color/transparent">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/urgence"
+                        android:scaleType="centerCrop" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Urgence"
+                        android:textSize="16sp"
+                        android:textAlignment="center"/>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_columnWeight="1"
+                android:layout_margin="15dp"
+                android:background="@android:color/transparent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="35dp"
+                    android:background="@android:color/transparent">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/note"
+                        android:scaleType="centerCrop" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Notes "
+                        android:textSize="16sp"
+                        android:textAlignment="center"/>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </GridLayout>
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

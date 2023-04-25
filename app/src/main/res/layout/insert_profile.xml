@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/addemail"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:ems="10"
+        android:text="email"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addname" />
+
+    <EditText
+        android:id="@+id/addname"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="48dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Full name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/addaddress"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:ems="10"
+        android:text="ADRESS"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addemail" />
+
+    <EditText
+        android:id="@+id/adddate"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:ems="10"
+        android:text="date"
+        android:inputType="date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addaddress" />
+
+    <EditText
+        android:id="@+id/addpoids"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="poids"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addgender" />
+
+    <EditText
+        android:id="@+id/addtaille"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="4dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="taille"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addpoids" />
+
+        <Button
+        android:id="@+id/button2"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addtaille"
+        app:layout_constraintVertical_bias="0.827"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="98dp" />
+
+    <EditText
+        android:id="@+id/addgender"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="gender"
+        app:layout_constraintTop_toBottomOf="@+id/adddate"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="81dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

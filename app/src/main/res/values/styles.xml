@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="styleRoundedCornersImage"  parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="cornerFamily">rounded</item>
+    <item name="cornerSize">20%</item>
+        <item name="android:fontFamily">@font/paprika</item>
+        <item name="android:fontFamily" tools:ignore="DuplicateDefinition">@font/poppins</item>
+</style>
+</resources>
