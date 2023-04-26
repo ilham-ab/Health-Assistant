@@ -34,6 +34,10 @@
         <activity android:name=".ContactActivity"></activity>
         <activity android:name=".AddActivity"></activity>
         <activity android:name=".Location"></activity>
+        <activity android:name=".FetchingMedecineActivity" />
+        <activity android:name=".InsertionMedecineActivity" />
+        <activity android:name=".MedecineDetailsActivity" />
+
 
     </application>
 

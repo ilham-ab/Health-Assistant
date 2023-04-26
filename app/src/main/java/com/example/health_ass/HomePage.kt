@@ -16,6 +16,7 @@ class HomePage: AppCompatActivity() {
     private lateinit var btnlogout : ImageButton
 
     private lateinit var urgence : LinearLayout
+    private lateinit var medecine: LinearLayout
 
 
     @SuppressLint("MissingInflatedId")
@@ -29,6 +30,8 @@ class HomePage: AppCompatActivity() {
 
         urgence = findViewById(R.id.Urgence)
 
+        medecine=findViewById(R.id.medecine)
+
         btnlogout.setOnClickListener { signOut(it) }
 
 
@@ -39,6 +42,11 @@ class HomePage: AppCompatActivity() {
 
         urgence.setOnClickListener{
             val intent = Intent(this, ContactActivity::class.java)
+            it.context.startActivity(intent)
+        }
+
+        medecine.setOnClickListener{
+            val intent = Intent(this, FetchingMedecineActivity::class.java)
             it.context.startActivity(intent)
         }
     }
