@@ -1,4 +1,4 @@
-package com.example.health_ass
+package com.example.note_health
 
 import org.junit.Test
 
