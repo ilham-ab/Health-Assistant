@@ -117,10 +117,6 @@ class InsertionMedecineActivity : AppCompatActivity() {
     }
 
     private fun saveMedecineData() {
-
-
-
-
         //getting values
         val MedecineName = etMedecineName.text.toString()
         val MedecineDose = etMedecineDose.text.toString()

@@ -24,6 +24,7 @@ class FetchingMedecineActivity : AppCompatActivity() {
     private lateinit var tvLoadingData: TextView
     private lateinit var medList: ArrayList<MedecineModel>
     private lateinit var dbRef: DatabaseReference
+    private lateinit var currentDayTextView: TextView
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +38,15 @@ class FetchingMedecineActivity : AppCompatActivity() {
         val currentDayOfMonth = Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
         days.find { it.dayOfMonth == currentDayOfMonth }?.isCurrentDay = true
 
+        currentDayTextView = findViewById(R.id.dayofmonth)
+
+
+        // Get the current day
+        val calendar = Calendar.getInstance()
+        val currentDay = calendar.get(Calendar.DAY_OF_MONTH)
+
+        // Set the current day in the TextView
+        currentDayTextView.text = currentDay.toString()
         //recyclerView.adapter = DayAdapter(days)
         //recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
@@ -151,5 +161,4 @@ class FetchingMedecineActivity : AppCompatActivity() {
         return days
     }
 }
-
 

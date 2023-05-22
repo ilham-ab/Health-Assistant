@@ -74,6 +74,29 @@
 
     </LinearLayout-->
 
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:id="@+id/monthSpinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            >
+
+            <TextView
+                android:id="@+id/dayofmonth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="12"
+                android:textSize="20dp"
+                android:layout_marginLeft="150dp"/>
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -84,8 +107,7 @@
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:orientation="horizontal"
-            android:padding="16dp"
-            >
+            android:padding="16dp">
 
             <TextView
                 android:id="@+id/jan"
@@ -225,6 +247,7 @@
         </LinearLayout>
 
     </HorizontalScrollView>
+
 
     <TextView
         android:id="@+id/tvLoadingData"

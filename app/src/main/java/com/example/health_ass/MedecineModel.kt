@@ -13,4 +13,5 @@ data class MedecineModel(
     val medecineOrdre: String? = null,
     val downloadUrl: String? = null,
 
-    )
+
+)

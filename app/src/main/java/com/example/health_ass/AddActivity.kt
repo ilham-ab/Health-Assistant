@@ -41,7 +41,9 @@ class AddActivity : AppCompatActivity() {
         if(sTele.isEmpty()){
             teleContact.error = "stp entrer le nom"
         }
-        val contactID = database.push().key!!
+       // val contactID = database.push().key!!
+        val contactID = FirebaseAuth.getInstance().currentUser!!.uid
+        database.child("contacts").child(contactID)
         val contact = Contact(contactID,sName,sTele)
         database.child(contactID).setValue(contact)
             .addOnCompleteListener{
@@ -53,8 +55,8 @@ class AddActivity : AppCompatActivity() {
                 Toast.makeText(this, "Erreur ${err.message}",Toast.LENGTH_LONG).show()
 
             }
-        //  val contactID = FirebaseAuth.getInstance().currentUser!!.uid
-        // database.child("contacts").child(contactID).setValue(contact)
+
+
     }
 
 

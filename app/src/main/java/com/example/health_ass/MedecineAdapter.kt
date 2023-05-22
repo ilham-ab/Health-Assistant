@@ -27,6 +27,7 @@ class MedecineAdapter(private val MedList: ArrayList<MedecineModel>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentMed = MedList[position]
         holder.tvMedName.text = currentMed.medecineName
+        holder.tvMedtime.text = currentMed.medecineTime1
     }
 
     override fun getItemCount(): Int {
@@ -36,6 +37,9 @@ class MedecineAdapter(private val MedList: ArrayList<MedecineModel>) :
     class ViewHolder(itemView: View, clickListener: onItemClickListener) : RecyclerView.ViewHolder(itemView) {
 
         val tvMedName : TextView = itemView.findViewById(R.id.mra_med_name)
+        val tvMedtime : TextView = itemView.findViewById(R.id.mra_med_time)
+
+
 
         init {
             itemView.setOnClickListener {
