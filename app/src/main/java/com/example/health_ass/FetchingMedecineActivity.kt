@@ -2,14 +2,20 @@
 package com.example.health_ass
 
 import android.annotation.SuppressLint
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.media.RingtoneManager
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
@@ -108,6 +114,10 @@ class FetchingMedecineActivity : AppCompatActivity() {
                     for (medSnap in snapshot.children){
                         val medData = medSnap.getValue(MedecineModel::class.java)
                         medList.add(medData!!)
+                        if (isTimeToNotify(medData.medecineTime1)) {
+                            // Create and display the notification
+                            showNotification(medData.medecineName)
+                        }
                     }
                     val mAdapter = MedecineAdapter(medList)
                     medRecyclerView.adapter = mAdapter
@@ -160,5 +170,46 @@ class FetchingMedecineActivity : AppCompatActivity() {
         }
         return days
     }
+
+    private fun isTimeToNotify(medecineTime1: String?): Boolean {
+        // Get the current time
+        val currentTime = Calendar.getInstance().time
+
+        // Parse the medication time from the string to a Date object
+        val format = SimpleDateFormat("HH:mm", Locale.getDefault())
+        val medicationTime = format.parse(medecineTime1)
+        // Compare the current time with the medication time
+        return currentTime.after(medicationTime)   }
+
+    private fun showNotification(medicationName: String?) {
+        val channelId = "medication_channel"
+        val channelName = "Medication Channel"
+        val notificationId = 1
+        val soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+        // Create a notification channel (required for Android 8.0 and above)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(channelId, channelName, importance).apply {
+                description = "Channel for medication reminders"
+                enableLights(true)
+                lightColor = Color.GREEN
+            }
+
+            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
+        // Build the notification
+        val notificationBuilder = NotificationCompat.Builder(this, channelId)
+            .setSmallIcon(R.drawable.assistance) // Replace with your own icon
+            .setContentTitle("Medication Reminder")
+            .setContentText("Time to take your medication: $medicationName")
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setSound(soundUri)
+
+        // Show the notification
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.notify(notificationId, notificationBuilder.build())
+    }
 }
+
 

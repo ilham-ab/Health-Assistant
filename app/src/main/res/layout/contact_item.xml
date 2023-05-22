@@ -48,19 +48,22 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="155dp"
             android:src="@drawable/phone"
-            app:tint="@color/teal_700" />
+            app:tint="@color/teal_700"
+            android:contentDescription="delete contact"/>
         <ImageView
             android:id="@+id/sms"
             android:layout_width="41dp"
             android:layout_height="wrap_content"
             android:src="@drawable/alert"
-            app:tint="@color/teal_700" />
+            app:tint="@color/teal_700"
+            android:contentDescription="send alert message"/>
         <ImageView
             android:id="@+id/dlt"
             android:layout_width="41dp"
             android:layout_height="wrap_content"
             android:src="@drawable/delete"
-            app:tint="@color/teal_700" />
+            app:tint="@color/teal_700"
+            android:contentDescription="call contact"/>
 
     </LinearLayout>
 

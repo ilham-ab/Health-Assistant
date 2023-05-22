@@ -170,7 +170,8 @@
                     android:background="@android:color/transparent"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:padding="35dp">
+                    android:padding="35dp"
+                    android:id="@+id/Notes">
 
                     <ImageView
                         android:layout_width="40dp"

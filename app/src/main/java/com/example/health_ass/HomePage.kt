@@ -17,6 +17,7 @@ class HomePage : AppCompatActivity() {
     private lateinit var btnlogout: ImageButton
     private lateinit var urgence: LinearLayout
     private lateinit var medecine: LinearLayout
+    private lateinit var notes :LinearLayout
 
     // Declare the database reference
     private lateinit var database: DatabaseReference
@@ -64,6 +65,7 @@ class HomePage : AppCompatActivity() {
         btnlogout = findViewById(R.id.logout)
         urgence = findViewById(R.id.Urgence)
         medecine = findViewById(R.id.medecine)
+        notes = findViewById(R.id.Notes)
 
         // Set an OnClickListener for the "btnlogout" ImageButton to sign out the user
         btnlogout.setOnClickListener { signOut(it) }
@@ -86,6 +88,14 @@ class HomePage : AppCompatActivity() {
             val intent = Intent(this, FetchingMedecineActivity::class.java)
             it.context.startActivity(intent)
         }
+
+        // Set an OnClickListener for the "medecine" LinearLayout to navigate to the FetchingMedecineActivity
+        notes.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            it.context.startActivity(intent)
+        }
+
+
     }
 
     // Function to sign out the user

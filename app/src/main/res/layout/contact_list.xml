@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/splash_screen"
     >
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
@@ -45,19 +45,22 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/contactsList">
+
             <ImageView
                 android:id="@+id/MyLoc"
                 android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_height="match_parent"
                 android:layout_marginRight="20dp"
                 android:src="@drawable/baseline_my_location_24"
-                app:tint="@color/teal_700" />
+                app:tint="@color/teal_700"
+                android:contentDescription="my localisation"/>
             <ImageView
                 android:id="@+id/addButton"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@drawable/person_add"
-                app:tint="@color/teal_700" />
+                app:tint="@color/teal_700"
+                android:contentDescription="Add contact"/>
 
 
         </LinearLayout>
