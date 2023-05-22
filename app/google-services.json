@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "845966548728",
+    "firebase_url": "https://projet-baea6-default-rtdb.firebaseio.com",
+    "project_id": "projet-baea6",
+    "storage_bucket": "projet-baea6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:845966548728:android:66c6935ae4fd63dbed650d",
+        "android_client_info": {
+          "package_name": "com.example.health_ass"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "845966548728-mhio3bp0677gpupvojg2erec67gpde4p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARf7VulAr9Ip31Zkjxq8w1rhPebOOVhUs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "845966548728-mhio3bp0677gpupvojg2erec67gpde4p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

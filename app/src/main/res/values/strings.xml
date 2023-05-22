@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Health_Ass</string>
+    <string name="current_date">Current Date:</string>
+    <string-array name="duration_value_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+    <string-array name="duration_unit_array">
+        <item>Mois</item>
+        <item>Semaines</item>
+    </string-array>
+</resources>
