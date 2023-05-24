@@ -32,7 +32,7 @@ class Profile : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
         supportActionBar?.hide()
-        returnBtn = findViewById(R.id.retour)
+
         editBtn = findViewById(R.id.edit)
         fullName = findViewById(R.id.fullname)
         email = findViewById(R.id.email)
@@ -42,34 +42,40 @@ class Profile : AppCompatActivity() {
         weight = findViewById(R.id.weight)
         height = findViewById(R.id.height)
 
-        returnBtn.setOnClickListener{
-            startActivity(Intent(this, HomePage::class.java))
-        }
+
 
         editBtn.setOnClickListener{
             openUpdateDialog()
         }
-        val email1 = intent.getStringExtra("email")
-        // Create a reference to the "users" node in the database
+
+        loadUserData()
+
+
+
+    }
+
+
+    private fun loadUserData() {
+
+        val sharedPreferences = getSharedPreferences("UserData", MODE_PRIVATE)
+        val email1 = sharedPreferences.getString("email", "")
+
+        Log.d(TAG, "Email: $email1")
         val database = Firebase.database
-        val usersRef = database.getReference("Users").orderByChild("email").equalTo(email1)
+        val usersRef = database.getReference("Users")
 
-
-        // Attach a listener to retrieve data from the "users" node
         usersRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
                 val users = mutableListOf<User>()
                 for (userSnapshot in dataSnapshot.children) {
                     val user = userSnapshot.getValue(User::class.java)
                     user?.let { users.add(it) }
                 }
 
-                // Display the first user's data in the TextViews
-                if (users.isNotEmpty()) {
-                    // Display the first user's data in the TextViews
-                    val user = users[0]
+                val filteredUsers = users.filter { it.email == email1 }
+
+                if (filteredUsers.isNotEmpty()) {
+                    val user = filteredUsers[0]
                     fullName.text = user.name ?: "No name found"
                     email.text = user.email ?: "No email found"
                     address.text = user.address ?: "No address found"
@@ -89,12 +95,11 @@ class Profile : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                // Failed to read value
                 Log.w(TAG, "Failed to read value.", error.toException())
             }
         })
-
     }
+
     @SuppressLint("MissingInflatedId")
     private fun openUpdateDialog() {
         val mDialog = AlertDialog.Builder(this)

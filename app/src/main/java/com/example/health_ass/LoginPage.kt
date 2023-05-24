@@ -45,6 +45,7 @@ class LoginPage : AppCompatActivity() {
                         // Sign-in successful, navigate to home page
                         val intent = Intent(this, HomePage::class.java)
                         intent.putExtra("email", email) // Pass the logged-in user's email
+                        saveUserEmail(email) // Save the email in SharedPreferences
                         startActivity(intent)
                     } else {
                         // Sign-in failed, display error message
@@ -67,6 +68,12 @@ class LoginPage : AppCompatActivity() {
             val intent = Intent(this, HomePage::class.java)
             startActivity(intent)
         }
+    }
+    private fun saveUserEmail(email: String) {
+        val sharedPreferences = getSharedPreferences("UserData", MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("email", email)
+        editor.apply()
     }
 
 }

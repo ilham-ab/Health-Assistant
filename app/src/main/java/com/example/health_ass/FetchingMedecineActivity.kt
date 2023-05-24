@@ -117,7 +117,7 @@ class FetchingMedecineActivity : AppCompatActivity() {
                         val medData = medSnap.getValue(MedecineModel::class.java)
                         medList.add(medData!!)
                         if (isTimeToNotify(medData.medecineTime1)) {
-                            // Create and display the notification
+                            // Create and display the notification for each medication individually
                             showNotification(medData.medecineName)
                         }
                     }
@@ -181,7 +181,8 @@ class FetchingMedecineActivity : AppCompatActivity() {
         val format = SimpleDateFormat("HH:mm", Locale.getDefault())
         val medicationTime = format.parse(medecineTime1)
         // Compare the current time with the medication time
-        return currentTime.after(medicationTime)   }
+        return currentTime.after(medicationTime)
+    }
 
     private fun showNotification(medicationName: String?) {
         val channelId = "medication_channel"

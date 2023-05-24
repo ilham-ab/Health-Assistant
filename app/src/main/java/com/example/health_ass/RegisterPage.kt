@@ -14,7 +14,7 @@ import com.google.firebase.database.FirebaseDatabase
 
 class RegisterPage : AppCompatActivity() {
 
-    // Declare the necessary UI elements
+    // Déclarez les éléments d'interface utilisateur nécessaires
     private lateinit var inputfullname: EditText
     private lateinit var inputemail: EditText
     private lateinit var inputpwd: EditText
@@ -22,10 +22,10 @@ class RegisterPage : AppCompatActivity() {
     private lateinit var registerbtn: Button
     private lateinit var login1: TextView
 
-    // Declare an instance of FirebaseAuth
+    // Déclarez une instance de FirebaseAuth
     private lateinit var firebaseAuth: FirebaseAuth
 
-    // Declare the FirebaseDatabase reference
+    // Déclarez la référence à FirebaseDatabase
     private lateinit var database: FirebaseDatabase
     private lateinit var usersRef: DatabaseReference
 
@@ -34,14 +34,14 @@ class RegisterPage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.register_page)
 
-        // Initialize the FirebaseAuth instance
+        // Initialisez l'instance de FirebaseAuth
         firebaseAuth = FirebaseAuth.getInstance()
 
-        // Initialize the FirebaseDatabase instance and the "Users" reference
+        // Initialisez l'instance de FirebaseDatabase et la référence "Users"
         database = FirebaseDatabase.getInstance()
         usersRef = database.getReference("Users")
 
-        // Bind UI elements to their respective views
+        // Associez les éléments d'interface utilisateur à leurs vues respectives
         inputfullname = findViewById(R.id.inputfullname)
         inputemail = findViewById(R.id.inputemail)
         inputpwd = findViewById(R.id.inputpwd)
@@ -49,56 +49,64 @@ class RegisterPage : AppCompatActivity() {
         registerbtn = findViewById(R.id.button1)
         login1 = findViewById(R.id.login1)
 
-        // Set an OnClickListener for the "login1" TextView to navigate to the LoginPage
+        // Définissez un OnClickListener pour le TextView "login1" pour naviguer vers la page LoginPage
         login1.setOnClickListener {
             val intent = Intent(this, LoginPage::class.java)
             startActivity(intent)
         }
 
-        // Set an OnClickListener for the "registerbtn" Button to register a new user
+        // Définissez un OnClickListener pour le bouton "registerbtn" afin d'enregistrer un nouvel utilisateur
         registerbtn.setOnClickListener {
             val fullName = inputfullname.text.toString()
             val email = inputemail.text.toString()
             val password = inputpwd.text.toString()
             val confirmPassword = inputpwd2.text.toString()
 
-            // Check if all input fields are not empty
+            // Vérifiez que tous les champs d'entrée ne sont pas vides
             if (fullName.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && confirmPassword.isNotEmpty()) {
-                // Check if the password matches the confirm password
+                // Vérifiez que le mot de passe correspond au mot de passe de confirmation
                 if (password == confirmPassword) {
-                    // Create a new user with the provided email and password
-                    firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            val user = firebaseAuth.currentUser
-                            val userId = user?.uid
+                    // Créez un nouvel utilisateur avec l'e-mail et le mot de passe fournis
+                    firebaseAuth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                val user = firebaseAuth.currentUser
+                                val userId = user?.uid
 
-                            // Create a new User object with the user's information
-                            val newUser = User(userId, fullName, email)
+                                // Créez un nouvel objet User avec les informations de l'utilisateur
+                                val newUser = User(userId, fullName, email)
 
-                            // Save the new user in the database using the userId as the key
-                            usersRef.child(userId!!).setValue(newUser)
-                                .addOnCompleteListener { dbTask ->
-                                    if (dbTask.isSuccessful) {
-                                        // Registration and data save successful, navigate to the LoginPage
-                                        val intent = Intent(this, LoginPage::class.java)
-                                        startActivity(intent)
-                                    } else {
-                                        // Error occurred while saving user data, display an error message
-                                        Toast.makeText(this, "Failed to save user data.", Toast.LENGTH_SHORT).show()
+                                // Enregistrez le nouvel utilisateur dans la base de données en utilisant l'ID de l'utilisateur comme clé
+                                usersRef.child(userId!!).setValue(newUser)
+                                    .addOnCompleteListener { dbTask ->
+                                        if (dbTask.isSuccessful) {
+                                            // Inscription et enregistrement des données réussis, déconnectez l'utilisateur
+                                            firebaseAuth.signOut()
+
+                                            // Naviguez vers la page LoginPage
+                                            val intent = Intent(this, LoginPage::class.java)
+                                            startActivity(intent)
+                                            finish() // Optionnel : fermez la page RegisterPage pour éviter de revenir en arrière
+                                        } else {
+                                            // Une erreur s'est produite lors de l'enregistrement des données de l'utilisateur, affichez un message d'erreur
+                                            Toast.makeText(
+                                                this,
+                                                "Échec de l'enregistrement des données de l'utilisateur.",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                        }
                                     }
-                                }
-                        } else {
-                            // Registration failed, display the error message
-                            Toast.makeText(this, task.exception.toString(), Toast.LENGTH_SHORT).show()
+                            } else {
+                                // L'inscription a échoué, affichez le message d'erreur
+                                Toast.makeText(this, task.exception.toString(), Toast.LENGTH_SHORT)
+                                    .show()
+                            }
                         }
-                    }
                 } else {
-                    // Password and confirm password do not match, display an error message
-                    Toast.makeText(this, "Password is not matching", Toast.LENGTH_SHORT).show()
+                    // Les champs vides ne sont pas autorisés, affichez un message d'erreur
+                    Toast.makeText(this, "Les champs vides ne sont pas autorisés !!", Toast.LENGTH_SHORT)
+                        .show()
                 }
-            } else {
-                // Empty fields are not allowed, display an error message
-                Toast.makeText(this, "Empty Fields Are not Allowed !!", Toast.LENGTH_SHORT).show()
             }
         }
     }

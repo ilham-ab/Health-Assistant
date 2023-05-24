@@ -16,16 +16,7 @@
         android:layout_height="?actionBarSize"
         android:background="@drawable/profile">
 
-        <ImageButton
-            android:id="@+id/retour"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/retour"
-            tools:ignore="ExtraText"
-            android:layout_centerVertical="true"
-            android:background="@android:color/transparent"
-            android:layout_marginStart="10dp"
-            android:contentDescription="TODO" />
+
 
         <TextView
             android:id="@+id/profile"
@@ -80,7 +71,6 @@
             android:id="@+id/fullname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Full name"
             android:textColor="#666666"
             android:layout_centerHorizontal="true"
             android:textSize="18sp"
@@ -103,7 +93,6 @@
             android:id="@+id/email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Email"
             android:layout_centerHorizontal="true"
             android:textSize="18sp"
             android:textColor="#666666"
@@ -128,7 +117,6 @@
             android:id="@+id/address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Address"
             android:textColor="#666666"
             android:layout_centerHorizontal="true"
             android:textSize="18sp"
@@ -153,7 +141,6 @@
             android:id="@+id/gender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Gender"
             android:layout_centerHorizontal="true"
             android:textSize="18sp"
             android:textColor="#666666"
@@ -177,7 +164,6 @@
             android:id="@+id/date2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Date de naissance"
             android:layout_centerHorizontal="true"
             android:textSize="18sp"
             android:textColor="#666666"
@@ -201,7 +187,6 @@
             android:id="@+id/weight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Poids"
             android:textColor="#666666"
             android:layout_centerHorizontal="true"
             android:textSize="18sp"
@@ -225,7 +210,6 @@
             android:id="@+id/height"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Taille"
             android:textColor="#666666"
             android:layout_centerHorizontal="true"
             android:textSize="18sp"

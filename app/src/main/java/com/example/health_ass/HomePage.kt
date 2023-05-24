@@ -33,32 +33,7 @@ class HomePage : AppCompatActivity() {
         // Retrieve the passed email from the intent
         val email = intent.getStringExtra("email")
 
-        // Use the email to fetch and display the user's data from the Firebase Realtime Database
-        val usersRef = database.child("Users").orderByChild("email").equalTo(email)
-        usersRef.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                val users = mutableListOf<User>()
-                for (userSnapshot in dataSnapshot.children) {
-                    val user = userSnapshot.getValue(User::class.java)
-                    user?.let { users.add(it) }
-                }
 
-                // Display the user's data or handle the case when no user is found
-                if (users.isNotEmpty()) {
-                    val user = users[0]
-                    // TODO: Display the user's data in the UI elements
-                } else {
-                    // No user found
-                }
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-                // Failed to read value
-                // TODO: Handle the error
-            }
-        })
 
         // Bind UI elements to their respective views
         puser = findViewById(R.id.personpage)
