@@ -9,6 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
@@ -41,9 +42,9 @@ class NoteRVAdapter( val noteList: ArrayList<Note>) :
     }
 
     private fun deleteNote(noteId: String) {
-
-            val dbRef = FirebaseDatabase.getInstance().getReference("Notes").child(noteId)
-            dbRef.removeValue()
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+        val dbRef = FirebaseDatabase.getInstance().getReference("Notes").child(userId.orEmpty()).child(noteId)
+        dbRef.removeValue()
 
 
     }

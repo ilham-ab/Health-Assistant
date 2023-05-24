@@ -20,6 +20,7 @@ class ContactActivity : AppCompatActivity() {
     private lateinit var contactarraylist : ArrayList<Contact>
     private lateinit var addbtn : ImageView
     private lateinit var locbtn : ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.contact_list)
@@ -29,7 +30,9 @@ class ContactActivity : AppCompatActivity() {
         contactRecyclerview.layoutManager = LinearLayoutManager(this)
         contactRecyclerview.setHasFixedSize(true)
         contactarraylist = arrayListOf()
-        dbref = FirebaseDatabase.getInstance().getReference("contacts");
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+
+        dbref = FirebaseDatabase.getInstance().getReference("contacts").child(userId.orEmpty())
         // val contactId = FirebaseAuth.getInstance().currentUser!!.uid
 
         //FirebaseDatabase.getInstance().getReference().child("contacts")

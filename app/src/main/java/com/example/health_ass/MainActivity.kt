@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.health_ass.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -34,6 +35,8 @@ class MainActivity : AppCompatActivity(){
         addFAB = findViewById(R.id.idFABAddNote)
 
         notesRV.layoutManager = LinearLayoutManager(this)
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+        dbRef = FirebaseDatabase.getInstance().getReference("Notes").child(userId.orEmpty())
 
 
 
@@ -51,8 +54,6 @@ class MainActivity : AppCompatActivity(){
     private fun getEmployeesData() {
 
         notesRV.visibility = View.GONE
-
-        dbRef = FirebaseDatabase.getInstance().getReference("Notes")
 
         dbRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {

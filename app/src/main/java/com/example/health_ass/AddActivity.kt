@@ -23,9 +23,11 @@ class AddActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.contact_add)
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+        database = FirebaseDatabase.getInstance().getReference("contacts").child(userId.orEmpty())
 
         //auth = Firebase.auth
-        database = FirebaseDatabase.getInstance().getReference("contacts")
+        // database = FirebaseDatabase.getInstance().getReference("contacts")
         nameContact = findViewById(R.id.nameContact)
         teleContact = findViewById(R.id.teleContact)
         btnSave = findViewById(R.id.save)
@@ -41,9 +43,7 @@ class AddActivity : AppCompatActivity() {
         if(sTele.isEmpty()){
             teleContact.error = "stp entrer le nom"
         }
-       // val contactID = database.push().key!!
-        val contactID = FirebaseAuth.getInstance().currentUser!!.uid
-        database.child("contacts").child(contactID)
+        val contactID = database.push().key!!
         val contact = Contact(contactID,sName,sTele)
         database.child(contactID).setValue(contact)
             .addOnCompleteListener{
@@ -55,7 +55,6 @@ class AddActivity : AppCompatActivity() {
                 Toast.makeText(this, "Erreur ${err.message}",Toast.LENGTH_LONG).show()
 
             }
-
 
     }
 

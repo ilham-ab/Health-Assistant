@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -36,6 +37,7 @@ class FetchingMedecineActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fetching_medecine_activity)
+
         //desplaying days_bar
 
         //val recyclerView = findViewById<RecyclerView>(R.id.days_recyclerview)
@@ -104,8 +106,8 @@ class FetchingMedecineActivity : AppCompatActivity() {
 
         medRecyclerView.visibility = View.GONE
         tvLoadingData.visibility = View.VISIBLE
-
-        dbRef = FirebaseDatabase.getInstance().getReference("Medecines")
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+        dbRef = FirebaseDatabase.getInstance().getReference("Medecines").child(userId.orEmpty())
 
         dbRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {

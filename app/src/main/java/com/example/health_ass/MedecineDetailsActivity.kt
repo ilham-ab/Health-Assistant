@@ -11,12 +11,13 @@ import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import java.util.*
 
 class MedecineDetailsActivity : AppCompatActivity() {
     private lateinit var tvMedImage: ImageView
-    private lateinit var tvMedId: TextView
+    //private lateinit var tvMedId: TextView
     private lateinit var tvMedName: TextView
     private lateinit var tvMedDose: TextView
     private lateinit var tvMedTime1: TextView
@@ -54,7 +55,7 @@ class MedecineDetailsActivity : AppCompatActivity() {
 
     private fun initView() {
         tvMedImage= findViewById(R.id.tvMedImage)
-        tvMedId = findViewById(R.id.tvMedId)
+       // tvMedId = findViewById(R.id.tvMedId)
         tvMedName = findViewById(R.id.tvMedName)
         tvMedDose = findViewById(R.id.tvMedDose)
         tvMedTime1 = findViewById(R.id.tvMedTime1)
@@ -69,7 +70,7 @@ class MedecineDetailsActivity : AppCompatActivity() {
     }
 
     private fun setValuesToViews() {
-        tvMedId.text = intent.getStringExtra("medId")
+       // tvMedId.text = intent.getStringExtra("medId")
         tvMedName.text = intent.getStringExtra("medName")
         tvMedDose.text = intent.getStringExtra("medDose")
         tvMedTime1.text = intent.getStringExtra("medTime1")
@@ -77,7 +78,6 @@ class MedecineDetailsActivity : AppCompatActivity() {
         tvMedTime3.text = intent.getStringExtra("medTime3")
         tvMedStart.text = intent.getStringExtra("medStart")
         tvMedDuree.text = intent.getStringExtra("medDuration")
-
         tvMedOrdre.text = intent.getStringExtra("medOrdre")
         val medPhotoUrl = intent.getStringExtra("medPhoto")
         Glide.with(this)
@@ -195,7 +195,9 @@ class MedecineDetailsActivity : AppCompatActivity() {
         dureeUnit: String,
         ordre: String
     ) {
-        val dbRef = FirebaseDatabase.getInstance().getReference("Medecines").child(id)
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+        val dbRef = FirebaseDatabase.getInstance().getReference("Medecines").child(userId.orEmpty()).child(id)
+
         val medInfo = MedecineModel(id, name, dose, time1,time2, time3,start, dureeValue,dureeUnit, ordre)
         dbRef.setValue(medInfo)
     }
@@ -206,7 +208,8 @@ class MedecineDetailsActivity : AppCompatActivity() {
     private fun deleteRecord(
         id: String
     ){
-        val dbRef = FirebaseDatabase.getInstance().getReference("Medecines").child(id)
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+        val dbRef = FirebaseDatabase.getInstance().getReference("Medecines").child(userId.orEmpty()).child(id)
         val mTask = dbRef.removeValue()
 
         mTask.addOnSuccessListener {

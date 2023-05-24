@@ -14,6 +14,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -106,8 +107,8 @@ class InsertionMedecineActivity : AppCompatActivity() {
 
 
 
-
-        dbRef = FirebaseDatabase.getInstance().getReference("Medecines")
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+        dbRef = FirebaseDatabase.getInstance().getReference("Medecines").child(userId.orEmpty())
         storageRef = FirebaseStorage.getInstance().reference
 
         btnSaveData = findViewById(R.id.btnSave)

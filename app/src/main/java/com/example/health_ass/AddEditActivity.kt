@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import java.text.SimpleDateFormat
@@ -24,7 +25,7 @@ class AddEditActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.add_edit_activity)
-
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
         noteTitreEdt = findViewById(R.id.idEdtNoteName)
         noteDescriptionEdit = findViewById(R.id.idEdtNoteDesc)
         btnSaveData = findViewById(R.id.idBtn)
@@ -50,7 +51,7 @@ class AddEditActivity : AppCompatActivity() {
                                         "noteTitre" to noteTitle,
                                         "noteDescription" to noteDescription,
                                             "noteDate" to currentDateAndTime)
-                dbRef = FirebaseDatabase.getInstance().getReference("Notes").child(noteId)
+                dbRef = FirebaseDatabase.getInstance().getReference("Notes").child(userId.orEmpty()).child(noteId)
                 dbRef.setValue(updatedNote)
                 //dbRef.child("Notes").child(noteId).setValue(updatedNote)
 
@@ -64,8 +65,8 @@ class AddEditActivity : AppCompatActivity() {
     }
 
     private fun saveNote() {
-
-        dbRef = FirebaseDatabase.getInstance().getReference("Notes")
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+        dbRef = FirebaseDatabase.getInstance().getReference("Notes").child(userId.orEmpty())
 
         //getting values
         val noteTitre = noteTitreEdt.text.toString()
